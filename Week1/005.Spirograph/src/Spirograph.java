@@ -68,12 +68,8 @@ public class Spirograph extends Application {
         for (double i = 0; i < 2 * Math.PI; i+= resolution) {
             float x1 = (float) (a * Math.cos(b * i) + c * Math.cos(d * i));
             float y1 = (float) (a * Math.sin(b * i) + c * Math.sin(d * i));
-            float x2 = x1;
-            float y2 = y1;
-//            for (int j = 0; j < 1000; j++) {
                 graphics.setColor(Color.getHSBColor((float) (i/Math.PI), 1, 1));
-                graphics.draw(new Line2D.Float(x1*scale, y1*scale, x2*scale, y2*scale));
-//            }
+                graphics.draw(new Line2D.Float(x1*scale, y1*scale, x1*scale, y1*scale));
         }
 
         /** Formula for drawing spirograph
