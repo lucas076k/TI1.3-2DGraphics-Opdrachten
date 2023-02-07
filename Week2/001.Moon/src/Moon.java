@@ -3,9 +3,6 @@ import java.awt.geom.*;
 
 import javafx.application.Application;
 
-import static javafx.application.Application.launch;
-
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -33,6 +30,19 @@ public class Moon extends Application {
         graphics.setTransform(new AffineTransform());
         graphics.setBackground(Color.white);
         graphics.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
+
+        GeneralPath path = new GeneralPath();
+        path.moveTo(0, 0);
+        path.curveTo(280, 0, 370, 300, 0, 350);
+        path.closePath();
+
+        Ellipse2D ellipse = new Ellipse2D.Double(25, 30, 300, 300);
+        graphics.setColor(Color.black);
+        graphics.draw(ellipse);
+        graphics.fill(ellipse);
+        graphics.setColor(Color.white);
+        graphics.fill(path);
+        graphics.draw(path);
     }
 
 
