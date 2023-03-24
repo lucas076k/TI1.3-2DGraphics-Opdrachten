@@ -1,4 +1,3 @@
-
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.Vector2;
 import org.jfree.fx.FXGraphics2D;
@@ -9,17 +8,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by johan on 2017-03-08.
- */
-public class GameObject {
-
+public class GameObject1 {
     private Body body;
     private BufferedImage image;
     private Vector2 offset;
     private double scale;
 
-    public GameObject(String imageFile, Body body, Vector2 offset, double scale) {
+    public GameObject1(String imageFile, Body body, Vector2 offset, double scale) {
         this.body = body;
         this.offset = offset;
         this.scale = scale;
@@ -45,5 +40,6 @@ public class GameObject {
         g2d.drawImage(image, tx, null);
 
     }
-    
+
 }
+

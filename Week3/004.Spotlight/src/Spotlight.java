@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -55,6 +56,16 @@ public class Spotlight extends Application {
         graphics.setTransform(new AffineTransform());
         graphics.setBackground(Color.white);
         graphics.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
+
+        Shape shape = new Ellipse2D.Double(canvas.getWidth()/2-100, canvas.getHeight()/2-100, 200, 200);
+        graphics.draw(shape);
+        graphics.clip(shape);
+
+        Random r = new Random();
+        for(int i = 0; i < 1000; i++) {
+            graphics.setPaint(Color.getHSBColor(r.nextFloat(),1,1));
+            graphics.drawLine(r.nextInt() % (int) canvas.getWidth(), r.nextInt() % (int) canvas.getHeight(), r.nextInt() % (int) canvas.getWidth(), r.nextInt() % (int) canvas.getHeight());
+        }
     }
 
     public void init()

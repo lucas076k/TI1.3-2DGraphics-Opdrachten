@@ -20,7 +20,7 @@ public class VerletEngine extends Application {
     private ResizableCanvas canvas;
     private ArrayList<Particle> particles = new ArrayList<>();
     private ArrayList<Constraint> constraints = new ArrayList<>();
-    private PositionConstraint mouseConstraint = new PositionConstraint(null);
+    private FixedPositionConstraint mouseConstraint = new FixedPositionConstraint(null);
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -63,7 +63,7 @@ public class VerletEngine extends Application {
             constraints.add(new DistanceConstraint(particles.get(i), particles.get(i + 1)));
         }
 
-        constraints.add(new PositionConstraint(particles.get(10)));
+        constraints.add(new FixedPositionConstraint(particles.get(10)));
         constraints.add(mouseConstraint);
     }
 
@@ -87,7 +87,7 @@ public class VerletEngine extends Application {
         }
 
         for (Constraint c : constraints) {
-            c.satisfy();
+            c.update();
         }
     }
 
@@ -142,7 +142,7 @@ public class VerletEngine extends Application {
     }
 
     private void mouseDragged(MouseEvent e) {
-        mouseConstraint.setFixedPosition(new Point2D.Double(e.getX(), e.getY()));
+        mouseConstraint.setPosition(new Point2D.Double(e.getX(), e.getY()));
     }
 
     public static void main(String[] args) {

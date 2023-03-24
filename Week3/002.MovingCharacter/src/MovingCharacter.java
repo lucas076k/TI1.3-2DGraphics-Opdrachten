@@ -1,7 +1,11 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.nio.Buffer;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -20,6 +24,11 @@ import org.jfree.fx.ResizableCanvas;
 
 public class MovingCharacter extends Application {
     private ResizableCanvas canvas;
+    private BufferedImage image;
+    private BufferedImage running[] = new BufferedImage[4];
+    private BufferedImage jumping[] = new BufferedImage[7];
+    private BufferedImage[] animation = new BufferedImage[7];
+
 
     @Override
     public void start(Stage stage) throws Exception
@@ -29,6 +38,21 @@ public class MovingCharacter extends Application {
         canvas = new ResizableCanvas(g -> draw(g), mainPane);
         mainPane.setCenter(canvas);
         FXGraphics2D g2d = new FXGraphics2D(canvas.getGraphicsContext2D());
+
+//        try {
+//            image = ImageIO.read(getClass().getResource("/resources/sprite.png"));
+            this.image = ImageIO.read(new File("Week3/002.MovingCharacter/resources/images/sprite.png"));
+        for (int i = 0; i < 7; i++) {
+            running[i] = image.getSubimage(64 * i, 64, 64, 64);
+            jumping[i] = image.getSubimage(64 * i, 320, 64, 64);
+        }
+        
+        animation = running;
+
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         new AnimationTimer() {
             long last = -1;
 
@@ -47,6 +71,11 @@ public class MovingCharacter extends Application {
         stage.setTitle("Moving Character");
         stage.show();
         draw(g2d);
+    }
+
+    private void MouseClick(MouseEvent event){
+        this.animation = jumping;
+
     }
 
 

@@ -17,15 +17,15 @@ import org.jfree.fx.ResizableCanvas;
 public class BlockDrag extends Application {
     ResizableCanvas canvas;
 
-    ArrayList<Renderables> renderables;
-    private double x;
-    private double y;
+    ArrayList<Renderable> renderables  = new ArrayList<>();;
+    private double x = 0;
+    private double y = 0;
+    Renderable selected;
 
     Point2D point2D;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        renderables = new ArrayList<>();
         BorderPane mainPane = new BorderPane();
         canvas = new ResizableCanvas(g -> draw(g), mainPane);
         mainPane.setCenter(canvas);
@@ -52,6 +52,11 @@ public class BlockDrag extends Application {
         x = -320;
         y = 25;
 
+        init(graphics);
+    }
+
+    public void init(Graphics2D graphics)
+    {
         for (int i = 0; i < 10; i++) {
             Rectangle2D newRect = new Rectangle2D.Double(x, y, 64, 64);
 
@@ -90,8 +95,9 @@ public class BlockDrag extends Application {
                     graphics.setColor(Color.YELLOW);
                     break;
             }
-            Renderables rect = new Renderables(graphics.getColor(), point2D = new Point2D.Double(x, y));
+            Renderable rect = new Renderable(graphics.getColor(), x, y, 64, 64);
             if (renderables.size() < 10) renderables.add(rect);
+
             graphics.fill(newRect);
             graphics.setColor(Color.black);
             graphics.draw(newRect);
@@ -99,19 +105,22 @@ public class BlockDrag extends Application {
         }
     }
 
-
     public static void main(String[] args) {
         launch(BlockDrag.class);
     }
 
     private void mousePressed(MouseEvent e) {
-        renderables.get(0).getPosition();
-        point2D = new Point2D.Double(e.getX(), e.getY());
-        renderables.get(0).setPosition(point2D);
+        for (Renderable renderable : renderables) {
+            if (renderable.contains(e.getX(), e.getY()))
+            {
+                selected = renderable;
+                renderable.setPos(e.getX(), e.getY(), 64, 64);
+            }
+        }
     }
 
     private void mouseReleased(MouseEvent e) {
-
+        selected = null;
     }
 
     private void mouseDragged(MouseEvent e) {
