@@ -61,8 +61,6 @@ public class Eindopdracht extends Application {
 
         RadialGradientPaint p = new RadialGradientPaint(center, radius, focus, distance, colors, MultipleGradientPaint.CycleMethod.REFLECT);
         graphics.setPaint(p);
-
-//        graphics.setClip(null);
     }
 
 
