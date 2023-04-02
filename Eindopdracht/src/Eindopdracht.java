@@ -44,7 +44,7 @@ public class Eindopdracht extends Application {
         graphics.setBackground(Color.white);
         Point2D focus = new Point2D.Float((float) (canvas.getWidth()/2), (float) (canvas.getHeight()/2));
         float[] distance = {0.0f, 0.3f, 0.9f};
-        Color[] colors = {Color.BLUE, Color.WHITE, Color.GREEN};
+        Color[] colors = {Color.RED, Color.BLUE, Color.GREEN};
         float radius = 100;
         Point2D center = new Point2D.Float((float) (position.getX()), (float) (position.getY()));
 
