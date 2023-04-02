@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.geom.*;
+import java.util.Random;
 
 import javafx.application.Application;
 
@@ -8,6 +9,7 @@ import static javafx.application.Application.launch;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.jfree.fx.FXGraphics2D;
